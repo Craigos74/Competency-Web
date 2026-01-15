@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Alumet’s competency framework: SAFE MINDSET behaviours, SKEB role assessments, and alignment with the Building Safety Act, BS 8670 and the Common Assessment Standard (Constructionline)." />
+  <title>Competence & Capability | Alumet</title>
+
+  <style>
+    :root{
+      --bg: #0b1b2b;
+      --bg2:#0f2a44;
+      --card:#0f2740cc;
+      --text:#eaf2ff;
+      --muted:#b8c7dc;
+      --line:#2b4a6b;
+      --accent:#14a3ff;   /* tweak to match Alumet brand if needed */
+      --accent2:#3bd1ff;
+      --white:#ffffff;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --max: 1100px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 70% 10%, rgba(20,163,255,.25), transparent 55%),
+        radial-gradient(900px 600px at 20% 40%, rgba(59,209,255,.18), transparent 50%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      line-height:1.55;
+    }
+
+    a{color:var(--accent2); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 80px}
+
+    /* Top nav */
+    .topbar{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(9, 22, 36, .72);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .topbar .inner{
+      max-width:var(--max); margin:0 auto; padding:12px 18px;
+      display:flex; align-items:center; gap:14px; justify-content:space-between;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; min-width:220px;
+    }
+    .brand img{height:38px; width:auto; display:block}
+    .brand .name{font-weight:700; letter-spacing:.2px}
+    .nav{
+      display:flex; gap:16px; flex-wrap:wrap; justify-content:flex-end;
+      font-size:14px;
+    }
+    .nav a{color:var(--muted)}
+    .nav a:hover{color:var(--text); text-decoration:none}
+
+    /* Hero */
+    .hero{
+      margin-top:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(135deg, rgba(20,163,255,.15), rgba(15,39,64,.65));
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .hero .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:22px;
+      padding:28px;
+      align-items:center;
+    }
+    .kicker{
+      color:var(--muted);
+      font-size:14px;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+    }
+    h1{
+      margin:.2rem 0 0;
+      font-size:clamp(28px, 3.2vw, 44px);
+      line-height:1.1;
+    }
+    .sub{
+      margin:12px 0 0;
+      color:var(--muted);
+      font-size:16px;
+      max-width:70ch;
+    }
+    .cta{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      font-weight:600;
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-color: rgba(255,255,255,.18);
+      color:#052036;
+    }
+    .btn:hover{text-decoration:none; transform: translateY(-1px)}
+    .heroAside{
+      display:flex; flex-direction:column; gap:12px;
+      align-items:flex-end;
+    }
+    .badge{
+      width:min(300px, 100%);
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.18);
+      padding:12px;
+      text-align:center;
+    }
+    .badge img{max-width:100%; height:auto; display:block; margin:0 auto}
+    .badge small{display:block; color:var(--muted); margin-top:8px}
+
+    /* Sections */
+    section{
+      margin-top:22px;
+      padding:22px;
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(15,39,64,.40);
+      box-shadow: 0 8px 24px rgba(0,0,0,.22);
+    }
+    section h2{
+      margin:0 0 10px;
+      font-size:22px;
+      letter-spacing:.2px;
+    }
+    section h3{
+      margin:18px 0 8px;
+      font-size:18px;
+      color:var(--text);
+    }
+    p{margin:10px 0; color:var(--text)}
+    .muted{color:var(--muted)}
+    ul{margin:10px 0 0 18px}
+    li{margin:6px 0; color:var(--text)}
+
+    /* Two-column content blocks */
+    .cols{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:18px;
+      margin-top:14px;
+    }
+    .card{
+      padding:16px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(10, 23, 38, .32);
+    }
+    .card h4{margin:0 0 6px; font-size:16px}
+    .card p{margin:0; color:var(--muted)}
+
+    /* SAFE MINDSET list */
+    .safeGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap:10px 16px;
+      margin-top:14px;
+    }
+    .safeItem{
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+      display:flex; gap:10px; align-items:flex-start;
+    }
+    .safeLetter{
+      width:28px; height:28px;
+      border-radius:9px;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:800;
+      background: rgba(20,163,255,.18);
+      border:1px solid rgba(20,163,255,.28);
+      color:var(--accent2);
+      flex:0 0 auto;
+    }
+    .safeText{font-weight:650}
+    .safeText span{font-weight:600; color:var(--muted)}
+
+    /* Process steps */
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(5, minmax(0,1fr));
+      gap:10px;
+      margin-top:14px;
+    }
+    .step{
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      min-height:110px;
+    }
+    .step b{display:block; margin-bottom:6px}
+    .step span{color:var(--muted); font-size:14px}
+
+    /* Footer */
+    footer{
+      margin-top:26px;
+      padding:18px 22px;
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      color:var(--muted);
+    }
+    .quote{
+      font-size:18px;
+      color:var(--text);
+      margin:0 0 8px;
+      font-weight:650;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero .grid{grid-template-columns:1fr}
+      .heroAside{align-items:flex-start}
+      .cols{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr; }
+      .brand{min-width:unset}
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <div class="inner">
+      <div class="brand">
+        <!-- Replace with your Alumet logo path -->
+        <img src="C:\Users\craig.smith\OneDrive - Alumet Systems UK Ltd\3. Alumet\Webpage\Alumet\no background.png" alt="Alumet logo" />
+        <div class="name">Competence & Capability</div>
+      </div>
+
+      <nav class="nav" aria-label="Page sections">
+        <a href="#regulatory">Regulatory alignment</a>
+        <a href="#safemindset">SAFE MINDSET</a>
+        <a href="#skeb">SKEB assessments</a>
+        <a href="#cas">CAS (Constructionline)</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <header class="hero" role="banner">
+      <div class="grid">
+        <div>
+          <div class="kicker">Safety • Compliance • Competence</div>
+          <h1>Competence you can evidence. Safety you can rely on.</h1>
+          <p class="sub">
+            At Alumet, competence is not assumed. It is defined, assessed, evidenced, and continuously improved to support safe façade delivery, regulatory compliance, and reliable project outcomes.
+          </p>
+
+          <div class="cta">
+            <a class="btn primary" href="#contact">Speak to our team</a>
+            <a class="btn" href="assets/alumet-competency-overview.pdf">Download competency overview (PDF)</a>
+          </div>
+
+          <p class="muted" style="margin-top:12px;">
+            Our approach combines technical capability with clear behavioural expectations, ensuring safety, accountability and professionalism are embedded across our teams and throughout the project lifecycle.
+          </p>
+        </div>
+
+        <aside class="heroAside">
+          <div class="badge">
+            <!-- Replace with your SAFE MINDSET stamp path -->
+            <img src="C:\Users\craig.smith\OneDrive - Alumet Systems UK Ltd\3. Alumet\Webpage\Alumet Safe Logo.png" alt="SAFE MINDSET stamp" />
+            </div>
+
+          <div class="badge">
+            <!-- Optional: your DNA helix marketing graphic -->
+            <img src="C:\Users\craig.smith\OneDrive - Alumet Systems UK Ltd\3. Alumet\Webpage\Safe Mindset rev 3.png" alt="SAFE MINDSET DNA graphic" />
+            <small>SAFE MINDSET behaviours are built into how we deliver.</small>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <section id="regulatory">
+      <h2>Regulatory context and standards alignment</h2>
+      <p>
+        Alumet’s competency framework has been developed to support the requirements of the <b>Building Safety Act</b> and aligns with the principles of <b>BS 8670</b>, supported by recognised industry assurance through the <b>Common Assessment Standard</b>.
+      </p>
+      <p class="muted">
+        Our assessments are structured to demonstrate that individuals undertaking façade-related roles are competent for their responsibilities, appropriately supported, operating within defined limits of authority, and equipped to escalate risk or uncertainty where required.
+      </p>
+
+      <div class="cols">
+        <div class="card">
+          <h4>Building Safety Act alignment</h4>
+          <p>
+            We support the Act’s emphasis on competence, accountability and effective risk management by defining role responsibilities, embedding safety-led behaviours, maintaining evidence of assessment and review, and applying clear navigation and escalation routes.
+          </p>
+        </div>
+        <div class="card">
+          <h4>BS 8670 alignment</h4>
+          <p>
+            We assess competence using Skills, Knowledge, Experience and Behaviours (SKEB), applied proportionately to role, responsibility and project risk, supported by evidence and periodic review.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="safemindset">
+      <h2>SAFE MINDSET: our behavioural standard</h2>
+      <p>
+        Alongside technical competence, Alumet has established 11 core behaviours that underpin how we work, communicate and make decisions. Together, they form <b>SAFE MINDSET</b>.
+      </p>
+
+      <div class="safeGrid" role="list">
+        <div class="safeItem" role="listitem"><div class="safeLetter">S</div><div class="safeText">Safety <span></span></div></div>
+        <div class="safeItem" role="listitem"><div class="safeLetter">A</div><div class="safeText">Accountability <span></span></div></div>
+        <div class="safeItem" role="listitem"><div class="safeLetter">F</div><div class="safeText">Fairness &amp; Integrity <span></span></div></div>
+        <div class="safeItem" role="listitem"><div class="safeLetter">E</div><div class="safeText">Ethics <span></span></div></div>
+        <div class="safeItem" role="listitem"><div class="safeLetter">M</div><div class="safeText">Mentorship <span></span></div></div>
+        <div class="safeItem" role="listitem"><div class="safeLetter">I</div><div class="safeText">Improvement <span></span></div></div>
+        <div class="safeItem" role="listitem"><div class="safeLetter">N</div><div class="safeText">Navigation &amp; Escalation <span></span></div></div>
+        <div class="safeItem" role="listitem"><div class="safeLetter">D</div><div class="safeText">Decisiveness <span></span></div></div>
+        <div class="safeItem" role="listitem"><div class="safeLetter">S</div><div class="safeText">Support &amp; Collaboration <span></span></div></div>
+        <div class="safeItem" role="listitem"><div class="safeLetter">E</div><div class="safeText">Engagement &amp; Communication <span></span></div></div>
+        <div class="safeItem" role="listitem"><div class="safeLetter">T</div><div class="safeText">Tenacity &amp; Resilience <span></span></div></div>
+      </div>
+
+      <p class="muted" style="margin-top:14px;">
+        SAFE MINDSET behaviours are assessed as part of our role competency framework and reinforced through leadership, mentoring and delivery practices. They are practical expectations applied on live projects.
+      </p>
+    </section>
+
+    <section id="skeb">
+      <h2>SKEB-based competency assessments</h2>
+      <p>
+        All roles within Alumet are assessed using a <b>SKEB-based framework</b>, aligned to BS 8670 principles. Competency is evaluated across:
+      </p>
+
+      <div class="cols">
+        <div class="card">
+          <h4>Skills</h4>
+          <p>Ability to carry out defined tasks and responsibilities effectively.</p>
+        </div>
+        <div class="card">
+          <h4>Knowledge</h4>
+          <p>Understanding of relevant regulations, standards, systems and interfaces.</p>
+        </div>
+        <div class="card">
+          <h4>Experience</h4>
+          <p>Demonstrated application of skills and knowledge at appropriate complexity and scale.</p>
+        </div>
+        <div class="card">
+          <h4>Behaviours</h4>
+          <p>Application of SAFE MINDSET behaviours in real project environments.</p>
+        </div>
+      </div>
+
+      <h3>How competence is managed</h3>
+      <div class="steps" aria-label="Competence management steps">
+        <div class="step"><b>1. Define</b><span>Role requirements set by responsibility and risk.</span></div>
+        <div class="step"><b>2. Assess</b><span>Assessment against SKEB and SAFE MINDSET.</span></div>
+        <div class="step"><b>3. Evidence</b><span>Records captured and reviewed.</span></div>
+        <div class="step"><b>4. Develop</b><span>Targeted actions, mentoring and training.</span></div>
+        <div class="step"><b>5. Escalate</b><span>Clear protocols where thresholds are exceeded.</span></div>
+      </div>
+
+      <h3>Governance and assurance</h3>
+      <p class="muted">
+        Competency assessments are subject to management oversight and periodic review. Where gaps or limitations are identified, appropriate controls are implemented, including supervision, mentoring, training or escalation.
+      </p>
+    </section>
+
+    <section id="cas">
+      <h2>Common Assessment Standard (CAS) – Constructionline</h2>
+      <p>
+        Alumet has achieved the <b>Common Assessment Standard (CAS)</b> through Constructionline, an industry-recognised pre-qualification standard used widely across the UK construction sector.
+      </p>
+      <p class="muted">
+        CAS provides a consistent benchmark for organisational capability, governance and compliance. Many principal contractors and public sector clients specify CAS as a minimum requirement, particularly on larger and higher-risk projects. The current version includes a dedicated Building Safety section, supporting evidence of organisational systems, competence management and governance arrangements in line with Building Safety Act expectations.
+      </p>
+
+      <ul>
+        <li>Independently assessed against a recognised industry benchmark</li>
+        <li>Robust systems and processes to manage safety and competence</li>
+        <li>Alignment with procurement and regulatory expectations</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>What this means for clients</h2>
+      <div class="cols">
+        <div class="card"><h4>Reduced delivery risk</h4><p>Defined capability and accountability across roles and teams.</p></div>
+        <div class="card"><h4>Stronger compliance assurance</h4><p>Structured competence management aligned to recognised standards.</p></div>
+        <div class="card"><h4>Clear escalation routes</h4><p>Practical pathways for safety-critical decisions and uncertainty.</p></div>
+        <div class="card"><h4>Consistent quality</h4><p>Competence maintained through review, development and learning.</p></div>
+      </div>
+
+      <h3>Important note</h3>
+      <p class="muted">
+        Competency assessments support, but do not replace, statutory dutyholder responsibilities. Alumet’s framework is intended to support safe delivery in line with regulatory and industry expectations.
+      </p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>
+        If you’d like to understand more about our competency framework, SAFE MINDSET behaviours, or how we support compliance on façade projects, please contact our team.
+      </p>
+
+      <!-- Replace with your actual contact details or embed a form -->
+      <div class="cols">
+        <div class="card">
+          <h4>Email</h4>
+          <p><a href="mailto:precontracts@alumet.co.uk">precontracts@alumet.co.uk</a></p>
+        </div>
+        <div class="card">
+          <h4>Phone</h4>
+          <p class="muted">+44 (0)____ _______</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p class="quote">Competence is not a one-off check. It is a system, a culture, and a responsibility.</p>
+      <p style="margin:0;">
+        © <span id="year"></span> Alumet Systems (UK) Ltd. All rights reserved.
+      </p>
+    </footer>
+
+  </main>
+
+  <script>
+    // tiny convenience so you don't have to edit the year every January
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
