@@ -14,7 +14,7 @@
       --text:#eaf2ff;
       --muted:#b8c7dc;
       --line:#2b4a6b;
-      --accent:#14a3ff;   /* tweak to match Alumet brand if needed */
+      --accent:#14a3ff;
       --accent2:#3bd1ff;
       --white:#ffffff;
       --shadow: 0 10px 30px rgba(0,0,0,.35);
@@ -72,13 +72,19 @@
       box-shadow:var(--shadow);
       overflow:hidden;
     }
-    .hero .grid {
-  display: grid;
-  grid-template-columns: 1.2fr .8fr;
-  gap: 22px;
-  padding: 28px;
-  align-items: flex-start;
-}
+
+    /* Make the kicker sit right at the top of the hero */
+    .heroKicker{
+      padding: 14px 28px 0 28px; /* top, right, bottom, left */
+    }
+
+    .hero .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:22px;
+      padding: 12px 28px 28px 28px;  /* reduced top padding so content sits higher */
+      align-items:flex-start;
+    }
 
     .kicker{
       color:var(--muted);
@@ -86,6 +92,7 @@
       letter-spacing:.6px;
       text-transform:uppercase;
     }
+
     h1{
       margin:.2rem 0 0;
       font-size:clamp(28px, 3.2vw, 44px);
@@ -116,10 +123,13 @@
       color:#052036;
     }
     .btn:hover{text-decoration:none; transform: translateY(-1px)}
+
     .heroAside{
-      display:flex; flex-direction:column; gap:12px;
+      display:flex; flex-direction:column; gap:14px;
       align-items:flex-end;
     }
+
+    /* Original badge (kept for DNA) */
     .badge{
       width:min(300px, 100%);
       border-radius:18px;
@@ -130,6 +140,34 @@
     }
     .badge img{max-width:100%; height:auto; display:block; margin:0 auto}
     .badge small{display:block; color:var(--muted); margin-top:8px}
+
+    /* NEW: Clean SAFE MINDSET logo holder (no dark border/background) */
+    .badgePlain{
+      width:min(300px, 100%);
+      padding:0;
+      border:none;
+      background:transparent;
+      text-align:center;
+    }
+    .badgePlain img{
+      width: 180px;        /* smaller logo */
+      max-width: 100%;
+      height: auto;
+      display:block;
+      margin: 0 auto;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,.35)); /* optional: keeps it crisp */
+    }
+
+    /* Make DNA thumbnail clickable nicely */
+    .thumbLink{
+      display:block;
+      border-radius:16px;
+      overflow:hidden;
+    }
+    .thumbLink:hover{
+      text-decoration:none;
+      transform: translateY(-1px);
+    }
 
     /* Sections */
     section{
@@ -236,8 +274,10 @@
       .hero .grid{grid-template-columns:1fr}
       .heroAside{align-items:flex-start}
       .cols{grid-template-columns:1fr}
-      .steps{grid-template-columns:1fr; }
+      .steps{grid-template-columns:1fr}
       .brand{min-width:unset}
+      .heroKicker{padding: 14px 18px 0 18px;}
+      .hero .grid{padding: 12px 18px 18px 18px;}
     }
   </style>
 </head>
@@ -264,9 +304,14 @@
   <main class="wrap">
 
     <header class="hero" role="banner">
+
+      <!-- Kicker moved to top of hero -->
+      <div class="heroKicker">
+        <div class="kicker">SAFETY • COMPLIANCE • COMPETENCE</div>
+      </div>
+
       <div class="grid">
         <div>
-          <div class="kicker">Safety • Compliance • Competence</div>
           <h1>Competence you can evidence. Safety you can rely on.</h1>
           <p class="sub">
             At Alumet, competence is not assumed. It is defined, assessed, evidenced, and continuously improved to support safe façade delivery, regulatory compliance, and reliable project outcomes.
@@ -283,14 +328,20 @@
         </div>
 
         <aside class="heroAside">
-          <div class="badge">
-               <img src="Assets/safe-mindset-stamp.png" alt="SAFE MINDSET stamp">
-            </div>
 
-          <div class="badge">
-              <img src="Assets/dna.png" alt="SAFE MINDSET DNA graphic">
-            <small>SAFE MINDSET behaviours are built into how we deliver.</small>
+          <!-- Smaller SAFE MINDSET logo, no dark border/background -->
+          <div class="badgePlain">
+            <img src="Assets/safe-mindset-stamp.png" alt="SAFE MINDSET stamp">
           </div>
+
+          <!-- DNA image clickable to open full image -->
+          <div class="badge">
+            <a class="thumbLink" href="Assets/dna.png" target="_blank" rel="noopener">
+              <img src="Assets/dna.png" alt="SAFE MINDSET DNA graphic">
+            </a>
+            <small>Click to view full image.</small>
+          </div>
+
         </aside>
       </div>
     </header>
@@ -422,7 +473,6 @@
         If you’d like to understand more about our competency framework, SAFE MINDSET behaviours, or how we support compliance on façade projects, please contact our team.
       </p>
 
-      <!-- Replace with your actual contact details or embed a form -->
       <div class="cols">
         <div class="card">
           <h4>Email</h4>
@@ -445,19 +495,8 @@
   </main>
 
   <script>
-    // tiny convenience so you don't have to edit the year every January
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
