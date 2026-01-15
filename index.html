@@ -71,19 +71,12 @@
       border-radius:24px;
       box-shadow:var(--shadow);
       overflow:hidden;
+      position:relative; /* needed for pinned stamp */
     }
 
-    /* Make the kicker sit right at the top of the hero */
+    /* Kicker pinned at top of hero */
     .heroKicker{
-      padding: 14px 28px 0 28px; /* top, right, bottom, left */
-    }
-
-    .hero .grid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:22px;
-      padding: 12px 28px 28px 28px;  /* reduced top padding so content sits higher */
-      align-items:flex-start;
+      padding: 14px 28px 0 28px;
     }
 
     .kicker{
@@ -93,21 +86,62 @@
       text-transform:uppercase;
     }
 
+    /* Pinned stamp top-right */
+    .stampPinned{
+      position:absolute;
+      top:16px;
+      right:16px;
+      z-index:3;
+      width:160px;
+      max-width:40%;
+      pointer-events:none; /* purely decorative */
+    }
+    .stampPinned img{
+      width:100%;
+      height:auto;
+      display:block;
+      background:transparent;
+      border:none;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,.35));
+    }
+
+    .hero .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:22px;
+      padding: 12px 28px 28px 28px;
+      align-items:flex-start;
+    }
+
+    /* Create space so text doesn't run under the pinned stamp */
+    .heroKicker,
+    .hero .grid{
+      padding-right:220px;
+    }
+
     h1{
       margin:.2rem 0 0;
       font-size:clamp(28px, 3.2vw, 44px);
       line-height:1.1;
     }
+
     .sub{
       margin:12px 0 0;
       color:var(--muted);
       font-size:16px;
       max-width:70ch;
     }
+
+    /* Push CTA + supporting text down a bit */
+    .heroActions{
+      margin-top:28px;
+    }
+
     .cta{
       display:flex; gap:12px; flex-wrap:wrap;
-      margin-top:18px;
+      margin-top:0;
     }
+
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
       padding:10px 14px;
@@ -127,11 +161,12 @@
     .heroAside{
       display:flex; flex-direction:column; gap:14px;
       align-items:flex-end;
+      margin-top: 34px; /* nudges the DNA panel down since stamp is now pinned */
     }
 
-    /* Original badge (kept for DNA) */
+    /* Badge used for DNA panel */
     .badge{
-      width:min(300px, 100%);
+      width:min(320px, 100%);
       border-radius:18px;
       border:1px solid rgba(255,255,255,.12);
       background:rgba(0,0,0,.18);
@@ -141,24 +176,7 @@
     .badge img{max-width:100%; height:auto; display:block; margin:0 auto}
     .badge small{display:block; color:var(--muted); margin-top:8px}
 
-    /* NEW: Clean SAFE MINDSET logo holder (no dark border/background) */
-    .badgePlain{
-      width:min(300px, 100%);
-      padding:0;
-      border:none;
-      background:transparent;
-      text-align:center;
-    }
-    .badgePlain img{
-      width: 180px;        /* smaller logo */
-      max-width: 100%;
-      height: auto;
-      display:block;
-      margin: 0 auto;
-      filter: drop-shadow(0 8px 18px rgba(0,0,0,.35)); /* optional: keeps it crisp */
-    }
-
-    /* Make DNA thumbnail clickable nicely */
+    /* Clickable DNA thumbnail */
     .thumbLink{
       display:block;
       border-radius:16px;
@@ -272,12 +290,28 @@
     /* Responsive */
     @media (max-width: 900px){
       .hero .grid{grid-template-columns:1fr}
-      .heroAside{align-items:flex-start}
+      .heroAside{align-items:flex-start; margin-top: 16px;}
       .cols{grid-template-columns:1fr}
       .steps{grid-template-columns:1fr}
       .brand{min-width:unset}
+
       .heroKicker{padding: 14px 18px 0 18px;}
       .hero .grid{padding: 12px 18px 18px 18px;}
+
+      /* Remove extra right padding on small screens */
+      .heroKicker,
+      .hero .grid{
+        padding-right:18px;
+      }
+
+      /* Unpin stamp on mobile, keep it top-right-ish */
+      .stampPinned{
+        position: static;
+        width: 150px;
+        max-width: 70%;
+        margin: 10px 0 0 auto;
+        pointer-events:auto;
+      }
     }
   </style>
 </head>
@@ -305,7 +339,12 @@
 
     <header class="hero" role="banner">
 
-      <!-- Kicker moved to top of hero -->
+      <!-- SAFE MINDSET stamp pinned in top-right -->
+      <div class="stampPinned" aria-hidden="true">
+        <img src="Assets/safe-mindset-stamp.png" alt="">
+      </div>
+
+      <!-- Kicker at the top of hero -->
       <div class="heroKicker">
         <div class="kicker">SAFETY • COMPLIANCE • COMPETENCE</div>
       </div>
@@ -313,35 +352,32 @@
       <div class="grid">
         <div>
           <h1>Competence you can evidence. Safety you can rely on.</h1>
+
           <p class="sub">
             At Alumet, competence is not assumed. It is defined, assessed, evidenced, and continuously improved to support safe façade delivery, regulatory compliance, and reliable project outcomes.
           </p>
 
-          <div class="cta">
-            <a class="btn primary" href="#contact">Speak to our team</a>
-            <a class="btn" href="assets/alumet-competency-overview.pdf">Download competency overview (PDF)</a>
-          </div>
+          <!-- Buttons + supporting text moved down -->
+          <div class="heroActions">
+            <div class="cta">
+              <a class="btn primary" href="#contact">Speak to our team</a>
+              <a class="btn" href="Assets/alumet-competency-overview.pdf">Download competency overview (PDF)</a>
+            </div>
 
-          <p class="muted" style="margin-top:12px;">
-            Our approach combines technical capability with clear behavioural expectations, ensuring safety, accountability and professionalism are embedded across our teams and throughout the project lifecycle.
-          </p>
+            <p class="muted" style="margin-top:12px;">
+              Our approach combines technical capability with clear behavioural expectations, ensuring safety, accountability and professionalism are embedded across our teams and throughout the project lifecycle.
+            </p>
+          </div>
         </div>
 
         <aside class="heroAside">
-
-          <!-- Smaller SAFE MINDSET logo, no dark border/background -->
-          <div class="badgePlain">
-            <img src="Assets/safe-mindset-stamp.png" alt="SAFE MINDSET stamp">
-          </div>
-
-          <!-- DNA image clickable to open full image -->
+          <!-- DNA image clickable -->
           <div class="badge">
             <a class="thumbLink" href="Assets/dna.png" target="_blank" rel="noopener">
               <img src="Assets/dna.png" alt="SAFE MINDSET DNA graphic">
             </a>
             <small>Click to view full image.</small>
           </div>
-
         </aside>
       </div>
     </header>
